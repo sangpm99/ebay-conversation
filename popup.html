@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <title>Extension Popup</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+          integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+<div class="custom-cookies">
+    <div class="row">
+        <div class="col-6 border-end">
+            <div class="row">
+                <div class="col-12 mb-2">
+                    <h2>Cookie Extractor</h2>
+                </div>
+
+                <div class="col-12 mb-2">
+                    <label class="form-label">Server</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="environment" id="production" value="product"
+                               checked>
+                        <label class="form-check-label" for="production">
+                            Production
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="environment" id="development"
+                               value="development">
+                        <label class="form-check-label" for="development">
+                            Development
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-12 mb-2 mt-1">
+                    <div class="w-100 border-bottom"></div>
+                </div>
+
+                <div class="col-12 mb-2">
+                    <label for="tokenInput" class="form-label">External Token</label>
+                    <input type="text" class="form-control" id="tokenInput">
+                </div>
+
+                <div class="col-12 mb-2">
+                    <label for="storeIdInput" class="form-label">Store ID</label>
+                    <input type="text" class="form-control" id="storeIdInput">
+                </div>
+
+                <div class="col-12 mb-2">
+                    <label for="timerInput" class="form-label">Time to repeat (minutes)</label>
+                    <input type="number" class="form-control" id="timerInput" min="1">
+                </div>
+
+                <div class="col-12">
+                    <button class="custom-btn hover btn-start" id="startButton">Start</button>
+                    <button class="custom-btn hover btn-finish" id="finishButton">Finish</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="row">
+                <div class="col-12 mb-2">
+                    <h2>Result</h2>
+                </div>
+
+                <div class="col-12 mb-2">
+                    <div class="row">
+                        <div class="col-5 border-end">
+                            <label class="form-label">Status</label>
+                            <br>
+
+                            <button class="custom-btn cursor-default btn-running" id="btnRunning">Running</button>
+                            <button class="custom-btn cursor-default btn-not-started" id="btnNotStarted">Not Started</button>
+                        </div>
+
+                        <div class="col-7">
+                            <div class="row">
+                                <div class="col pe-0">
+                                    <span class="form-label text-info">Started At:</span>
+                                    <br>
+                                    <span class="form-label text-primary">Sent:</span>
+                                    <br>
+                                    <span class="form-label text-success">Succeeded:</span>
+                                    <br>
+                                    <span class="form-label text-danger">Fail:</span>
+                                </div>
+                                <div class="col-auto ps-0">
+                                    <span class="form-label text-info" id="startDateSpan"></span>
+                                    <br>
+                                    <span class="form-label text-primary" id="sentSpan"></span>
+                                    <br>
+                                    <span class="form-label text-success" id="sentSuccessSpan"></span>
+                                    <br>
+                                    <span class="form-label text-danger" id="sentFailSpan"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 mb-2">
+                    <div class="w-100 border-bottom"></div>
+                </div>
+
+                <div class="col-12 mb-2">
+                    <div class="row">
+                        <div class="col">
+                            <label for="cookies" class="form-label">
+                                Cookies
+                            </label>
+                        </div>
+
+                        <div class="col-auto">
+                            <button class="custom-btn hover btn-copy btn-sm" id="copyCookies">
+                                <i class="fa-solid fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <input type="text" class="form-control" id="cookies" readonly>
+                </div>
+
+                <div class="col-12 mb-2">
+                    <div class="row">
+                        <div class="col">
+                            <label for="userAgent" class="form-label">
+                                User Agent
+                            </label>
+                        </div>
+
+                        <div class="col-auto">
+                            <button class="custom-btn hover btn-copy btn-sm" id="copyUserAgent">
+                                <i class="fa-solid fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <input type="text" class="form-control" id="userAgent" readonly>
+                </div>
+
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col">
+                            <label for="csrfNonce" class="form-label">
+                                csrfNonce
+                            </label>
+                        </div>
+
+                        <div class="col-auto">
+                            <button class="custom-btn hover btn-copy btn-sm" id="copyCsrfNonce">
+                                <i class="fa-solid fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <input type="text" class="form-control" id="csrfNonce" readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="assets/js/bootstrap.bundle.js"></script>
+<script src="popup.js"></script>
+</body>
+</html>

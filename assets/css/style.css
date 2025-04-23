@@ -1,0 +1,71 @@
+body {
+    margin: 20px;
+    background-color: #f8f9fa;
+    width: 700px;
+    font-size: 12px;
+}
+
+h2 {
+    color: #607d8b;
+    font-size: 1.5em;
+    font-weight: bold;
+    unicode-bidi: isolate;
+}
+
+.w-100 {
+    width: 100% !important;
+}
+
+.form-label {
+    color: #242424;
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+.custom-btn {
+    padding: 5px 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px, rgba(0, 0, 0, 0.24) 0 1px 2px;
+    color: #fff;
+    transition: opacity ease-in-out 0.25s;
+}
+
+.hover:hover {
+    opacity: 0.5;
+}
+
+.cursor-default {
+    cursor: default !important;
+}
+
+.btn-start {
+    background-color: #70a1ff;
+}
+
+.btn-finish {
+    background-color: #ff4757;
+}
+
+.btn-running {
+    background-color: #00b894;
+    display: none;
+}
+.btn-error {
+    background-color: #e74c3c;
+    display: none;
+}
+.btn-not-started {
+    background-color: #636e72;
+}
+.btn-copy {
+    color: #636e72;
+    background-color: transparent;
+    box-shadow: none;
+    font-size: 16px;
+}
+.btn-sm {
+    padding: 2px 5px;
+}
