@@ -26,10 +26,10 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
                         let sentSuccess = Number(storageData.sentSuccessSpan || 0);
                         let sentFail = Number(storageData.sentFailSpan || 0);
 
-                        const etsyTab = tabs.find(tab => tab.url && tab.url.includes("https://www.etsy.com"));
+                        const etsyTab = tabs.find(tab => tab.url && tab.url.includes("https://www.ebay.com"));
 
                         if (!etsyTab) {
-                            console.error("Không tìm thấy tab Etsy nào.");
+                            console.error("Không tìm thấy tab Ebay nào.");
                             return;
                         }
 
@@ -52,12 +52,12 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
                                 const domData = domResult[0]?.result || {};
 
                                 const cookies = await Promise.all([
-                                    getCookies("www.etsy.com"),
-                                    getCookies(".etsy.com")
+                                    getCookies("www.ebay.com"),
+                                    getCookies(".ebay.com")
                                 ]).then(arr => arr.flat());
 
                                 // Kiểm tra dữ liệu DOM và cookies có đủ không
-                                if (domData.csrfNonce && domData.userAgent && validateCookies(cookies)) {
+                                if (domData.csrfNonce && domData.userAgent) {
                                     return { domData, cookies }; // 👈 Dừng lặp nếu dữ liệu đủ
                                 }
 
@@ -137,20 +137,23 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     }
 });
 
-const validateCookies = (cookies) => {
-    const required = ["session-key-www"];
-    // , "et-v1-1-1-_etsy_com", "session-key-apex"
-    const cookieNames = cookies.map(c => c.name);
-    return required.every(name => cookieNames.includes(name));
-};
-
 // 👉 Get Element from DOM
 const handleInteractDOM = () => {
     // 👉 Get user agent
     const agent = navigator.userAgent;
     // 👉 Get csrfNonce
-    const csrfMeta = document.querySelector('meta[name="csrf_nonce"]');
-    const csrf = csrfMeta ? csrfMeta.getAttribute("content") : "No Data";
+    let scriptTags = document.querySelectorAll('script');
+    let srtValue = null;
+
+    scriptTags.forEach(script => {
+        if (script.textContent.includes('"srt":"')) {
+            let match = script.textContent.match(/"srt":"([^"]+)"/);
+            if (match && match[1]) {
+                srtValue = match[1];
+            }
+        }
+    });
+    const csrf = srtValue || "No Data";
 
     return {
         csrfNonce: csrf,
